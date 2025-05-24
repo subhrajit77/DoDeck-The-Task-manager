@@ -47,7 +47,7 @@ export async function registerUser(req, res) {
         res.status(201).json({
             succcess: true,
             token,
-            user: { id: user.name, name: user.name, email: user.email },
+            user: { id: user._id, name: user.name, email: user.email },
         });
     } catch (err) {
         console.log(err);
@@ -99,7 +99,7 @@ export async function loginUser(req, res) {
 //Get User Function
 export async function getCurrentUser(req, res) {
     try {
-        const user = await user.findById(req.user.id).select("name email");
+        const user = await User.findById(req.user.id).select("name email");
         if (!user) {
             return res
                 .status(404)
