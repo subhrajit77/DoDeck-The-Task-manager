@@ -24,10 +24,10 @@ export async function registerUser(req, res) {
             .status(400)
             .json({ success: false, message: "Please enter a valid email" });
     }
-    if (!password.length < 8) {
+    if (password.length < 8) {
         return res.status(400).json({
             success: false,
-            message: "Password must be max 8 characters",
+            message: "Password must be min 8 characters lol lol",
         });
     }
 
@@ -154,7 +154,7 @@ export async function updatePassword(req, res) {
     }
 
     try {
-        const user = await User.findById(req.user.id).select("password");
+        const user = await User.findById(req.user._id).select("password");
 
         if (!user) {
             return res

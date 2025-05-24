@@ -17,7 +17,7 @@ connectDB();
 
 //routes
 
-app.use("/api/users", userRouter);
+app.use("/api/user", userRouter);
 app.get("/", (req, res) => {
     res.send("Hello from Taskflow API");
 });
