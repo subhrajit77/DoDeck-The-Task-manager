@@ -25,12 +25,10 @@ export async function registerUser(req, res) {
             .json({ success: false, message: "Please enter a valid email" });
     }
     if (!password.length < 8) {
-        return res
-            .status(400)
-            .json({
-                success: false,
-                message: "Password must be max 8 characters",
-            });
+        return res.status(400).json({
+            success: false,
+            message: "Password must be max 8 characters",
+        });
     }
 
     try {
@@ -128,12 +126,10 @@ export async function updateProfile(req, res) {
     try {
         const exists = await User.findOne({ email, _id: { $ne: req.user.id } });
         if (exists) {
-            return res
-                .status(409)
-                .json({
-                    success: false,
-                    message: "Email already used by another account",
-                });
+            return res.status(409).json({
+                success: false,
+                message: "Email already used by another account",
+            });
         }
         const user = await User.findByIdAndUpdate(
             req.user.id,
@@ -168,18 +164,15 @@ export async function updatePassword(req, res) {
 
         const match = await bcrypt.compare(currentPassword, user.password);
         if (!match) {
-            return res
-                .status(401)
-                .json({
-                    success: false,
-                    message: "Current password incorrect",
-                });
+            return res.status(401).json({
+                success: false,
+                message: "Current password incorrect",
+            });
         }
         user.password = await bcrypt.hash(newPassword, 10);
         await user.save();
         res.json({ success: true, message: "Password updated successfully" });
-    } 
-    catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: "Server error" });
     }
