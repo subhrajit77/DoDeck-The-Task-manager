@@ -5,7 +5,7 @@ import { Zap, LogOut, Settings, ChevronDown } from "lucide-react";
 const Navbar = ({ user = {}, onLogout }) => {
     const menuref = useRef(null);
 
-    const [menuOpen, setMenuOpen] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Navbar = ({ user = {}, onLogout }) => {
         // Logic for logging out the user
         setMenuOpen(false);
         onLogout();
-    }
+    };
 
     return (
         <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200 font-sans">
@@ -74,8 +74,8 @@ const Navbar = ({ user = {}, onLogout }) => {
                                     </p>
                                 </div>
                                 <ChevronDown
-                                    className="w-4 h-4 text-gray-500 transition-transform duration-300
-                                ${menuOpen ? 'rotate-180' : ''}"
+                                    className={`w-4 h-4 text-gray-500 transition-transform duration-300
+                                ${menuOpen ? "rotate-180" : " "}`}
                                 />
                             </button>
                             {menuOpen && (
@@ -106,13 +106,6 @@ const Navbar = ({ user = {}, onLogout }) => {
                                 </ul>
                             )}
                         </div>
-
-                        <button
-                            className="px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 rounded-lg shadow hover:shadow-lg transition-all duration-300"
-                            onClick={() => navigate("/register")}
-                        >
-                            Register
-                        </button>
                     </nav>
                 </div>
             </div>
