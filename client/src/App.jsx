@@ -1,14 +1,74 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
 import "./App.css";
-import Navbar from "./components/global/navbar/Navbar";
+import { replace, Route, Routes, useNavigate } from "react-router-dom";
+import Layout from "./components/global/layout/Layout";
+
+import Login from "./components/global/login/Login";
+import Signup from "./components/global/signup/Signup";
 
 function App() {
+    const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState(() => {
+        const stored = localStorage.getItem("currentUser");
+        return stored ? JSON.parse(stored) : null;
+    });
+    useEffect(() => {
+        if (currentUser) {
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        } else {
+            localStorage.removeItem("currentUser");
+        }
+    }, [currentUser]);
+
+    const handleAuthSubmit = (data) => {
+        const user = {
+            email: data.email,
+            name: data.name || "User",
+            avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                data.name || "User"
+            )}&background=random`,
+        };
+        setCurrentUser(user);
+        navigate("/", (replace = true));
+    };
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setCurrentUser(null);
+        navigate("/login", { replace: true });
+    };
+    const ProtectedLayout = () => {
+        <Layout user={currentUser} onLogout={handleLogout}>
+            <Outlet />
+        </Layout>;
+    };
+
     return (
         <>
-            <Navbar />
-            <h1 className="text-3xl font-bold underline">Hello world!</h1>
+            <Routes>
+                <Route
+                    path="/login"
+                    element={
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <Login
+                                onSubmit={handleAuthSubmit}
+                                onSwitchMode={() => navigate("/signup")}
+                            />
+                        </div>
+                    }
+                />
+                <Route
+                    path="/signup"
+                    element={
+                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <Login
+                                onSubmit={handleAuthSubmit}
+                                onSwitchMode={() => navigate("/login")}
+                            />
+                        </div>
+                    }
+                />
+                <Route path="/" element={<Layout />} />
+            </Routes>
         </>
     );
 }
