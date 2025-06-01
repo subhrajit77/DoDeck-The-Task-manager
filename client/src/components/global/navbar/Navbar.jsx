@@ -65,14 +65,15 @@ const Navbar = ({ user = {}, onLogout }) => {
                                         </div>
                                     )}
                                 </div>
-                                <div className=" absolute-bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse">
-                                    <p className=" text-sm font-medium text-gray-800">
+                                <div className="flex flex-col items-start ml-2">
+                                    <span className="text-sm font-medium text-gray-800">
                                         {user.name}
-                                    </p>
-                                    <p className=" text-xs font-normal text-gray-500">
+                                    </span>
+                                    {/* <span className="text-xs text-gray-500">
                                         {user.email}
-                                    </p>
+                                    </span> */}
                                 </div>
+                                <div className=" absolute-bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
                                 <ChevronDown
                                     className={`w-4 h-4 text-gray-500 transition-transform duration-300
                                 ${menuOpen ? "rotate-180" : " "}`}

@@ -8,13 +8,14 @@ import React, {
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
 import axios from "axios";
-import { Outlet } from "react-router-dom";
-import { Circle, Clock, TrendingUp } from "lucide-react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { Circle, Clock, TrendingUp, Zap } from "lucide-react";
 
 const Layout = ({ onLogout, user }) => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const fetchTasks = useCallback(async () => {
         setLoading(true);
@@ -22,7 +23,11 @@ const Layout = ({ onLogout, user }) => {
 
         try {
             const token = localStorage.getItem("token");
-            if (!token) throw new Error("No auth token found");
+            if (!token) {
+                navigate("/login", { replace: true }); // Redirect to login
+                return;
+            }
+            // if (!token) throw new Error("No auth token found");
 
             const { data } = await axios.get(
                 "http://localhost:4000/api/tasks/gp/",
@@ -43,7 +48,8 @@ const Layout = ({ onLogout, user }) => {
         } catch (err) {
             console.error("Error fetching tasks:", err);
             setError(err.message || "Failed to load tasks");
-            if (err.response?.status === 401) onLogout;
+            if (err.response?.status === 401 && typeof onLogout === "function")
+                onLogout();
         } finally {
             setLoading(false);
         }
@@ -65,7 +71,7 @@ const Layout = ({ onLogout, user }) => {
         const totalCount = tasks.length;
         const pendingCount = totalCount - completedTasks;
         const completionPercentage = totalCount
-            ? Math.rounf((completedTasks / totalCount) * 100)
+            ? Math.round((completedTasks / totalCount) * 100)
             : 0;
 
         return {
@@ -78,9 +84,9 @@ const Layout = ({ onLogout, user }) => {
 
     //statistics card on right side
     const StatCard = ({ title, value, icon }) => (
-        <div className="p-2 sm:p-3 rounded-xl bg-white shadow-sm border border-purple-100 hover:shadow-md transition-all duration-300 hover: boder-purple-100 group">
-            <div className="flex items-center gap-2">{icon}</div>
-            <div className="p-1.5 rounded-lg bg-gradient-to-br from-fuchsia-500/10 to bg-purple-500/10 group-hover:from-fuchsia-500/20 group-hover:to purple-500/20 ">
+        <div className="p-2 sm:p-3 rounded-xl bg-white shadow-sm border hover:shadow-md transition-all duration-300 hover: border-purple-100 group">
+            {/* <div className="flex items-center gap-2">{icon}</div> */}
+            <div className="p-1.5 rounded-lg bg-gradient-to-br from-fuchsia-500/10 to bg-purple-500/10 group-hover:from-fuchsia-500/20 group-hover:to-purple-500/20 ">
                 {icon}
             </div>
             <div className="min-w-0">
@@ -120,9 +126,9 @@ const Layout = ({ onLogout, user }) => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-pink-500">
             <Navbar user={user} onLogout={onLogout} />
-            <Sidebar user={user} task={tasks} />
+            <Sidebar user={user} tasks={tasks} />
 
             <div className=" ml-0 xl:ml-64 lg:ml-64 md:ml-16 p-3 sm:p-4 md:p-4 transition-all duration-300">
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
@@ -141,12 +147,12 @@ const Layout = ({ onLogout, user }) => {
                                     title="Total Tasks"
                                     value={stats.totalCount}
                                     icon={
-                                        <Circle className="2-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"></Circle>
+                                        <Circle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500"></Circle>
                                     }
                                 />
                                 <StatCard
                                     title="Completed"
-                                    value={stats.completedTasks}
+                                    value={stats.completedCount}
                                     icon={
                                         <Circle className="2-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500"></Circle>
                                     }
@@ -176,7 +182,7 @@ const Layout = ({ onLogout, user }) => {
                                         Task Progress
                                     </span>
                                     <span className="text-xs bg-purple-700 px-1.75 py-0.5 sm:px-2 rounded-full">
-                                        {stats.completedTasks}/{" "}
+                                        {stats.completedCount}/{" "}
                                         {stats.totalCount}
                                     </span>
                                 </div>
@@ -184,7 +190,7 @@ const Layout = ({ onLogout, user }) => {
                                     <div className=" flex gap-1.5 items-center">
                                         <div className="flex-1 h-2 sm:h-3 bg-purple-100 rounded-full overflow-hidden">
                                             <div
-                                                className="h-full bg-gradient-to-r from- bg-fuchsia-500 to-purple-600 transition-all duration-500"
+                                                className="h-full bg-gradient-to-r from-fuchsia-500 to-purple-600 transition-all duration-500"
                                                 style={{
                                                     width: `${stats.completionPercentage}%`,
                                                 }}
@@ -202,7 +208,7 @@ const Layout = ({ onLogout, user }) => {
                                     {tasks.slice(0, 3).map((task) => (
                                         <div
                                             key={task._id || task.id}
-                                            className="flex items-center justify-between p-2 sm:p-3 hover: bg-purple-50/50 rounded-lg transition-colors duration-200 border border-transparent hover:border-purple-100"
+                                            className="flex items-center justify-between p-2 sm:p-3 hover:bg-purple-50/50 rounded-lg transition-colors duration-200 border border-transparent hover:border-purple-100"
                                         >
                                             <div className=" flex-1 min-w-0">
                                                 <p className="text-sm font-medium text-gray-700 break-words whitespace-normal">
@@ -239,7 +245,7 @@ const Layout = ({ onLogout, user }) => {
                                                     <p className=" text-sm text-gray-500">
                                                         No Recent Activity
                                                     </p>
-                                                    <p className=" text-cs text-gray-400 mt-1">
+                                                    <p className=" text-xs text-gray-400 mt-1">
                                                         Tasks will appear here.
                                                     </p>
                                                 </div>

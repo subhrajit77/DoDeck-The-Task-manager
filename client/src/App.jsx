@@ -5,6 +5,7 @@ import Layout from "./components/global/layout/Layout";
 
 import Login from "./components/global/login/Login";
 import Signup from "./components/global/signup/Signup";
+import axios from "axios";
 
 function App() {
     const navigate = useNavigate();
@@ -13,14 +14,35 @@ function App() {
         return stored ? JSON.parse(stored) : null;
     });
     useEffect(() => {
-        if (currentUser) {
-            localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        } else {
-            localStorage.removeItem("currentUser");
+        const token = localStorage.getItem("token");
+        if (token) {
+            axios
+                .get("http://localhost:4000/api/user/me", {
+                    headers: { Authorization: `Bearer ${token}` },
+                })
+                .then((res) => {
+                    if (res.data && res.data.user) {
+                        setCurrentUser({
+                            ...res.data.user,
+                            avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                                res.data.user.name || "User"
+                            )}&background=random`,
+                        });
+                    }
+                })
+                .catch(() => {
+                    localStorage.removeItem("token");
+                    setCurrentUser(null);
+                    navigate("/login", { replace: true });
+                });
         }
-    }, [currentUser]);
+    }, [navigate]);
 
     const handleAuthSubmit = (data) => {
+        // Save token if present
+        if (data.token) {
+            localStorage.setItem("token", data.token);
+        }
         const user = {
             email: data.email,
             name: data.name || "User",
@@ -29,8 +51,9 @@ function App() {
             )}&background=random`,
         };
         setCurrentUser(user);
-        navigate("/", (replace = true));
+        navigate("/", { replace: true });
     };
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         setCurrentUser(null);
@@ -48,7 +71,7 @@ function App() {
                 <Route
                     path="/login"
                     element={
-                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <div className="fixed inset-0 flex items-center justify-center bg-purple-100 bg-opacity-50">
                             <Login
                                 onSubmit={handleAuthSubmit}
                                 onSwitchMode={() => navigate("/signup")}
@@ -59,15 +82,20 @@ function App() {
                 <Route
                     path="/signup"
                     element={
-                        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                            <Login
+                        <div className="fixed inset-0 flex items-center justify-center bg-purple-100 bg-opacity-50">
+                            <Signup
                                 onSubmit={handleAuthSubmit}
                                 onSwitchMode={() => navigate("/login")}
                             />
                         </div>
                     }
                 />
-                <Route path="/" element={<Layout />} />
+                <Route
+                    path="/"
+                    element={
+                        <Layout user={currentUser} onLogout={handleLogout} />
+                    }
+                />
             </Routes>
         </>
     );
