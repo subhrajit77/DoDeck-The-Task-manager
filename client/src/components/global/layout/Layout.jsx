@@ -126,7 +126,7 @@ const Layout = ({ onLogout, user }) => {
     }
 
     return (
-        <div className="min-h-screen bg-pink-500">
+        <div className="min-h-screen bg-white">
             <Navbar user={user} onLogout={onLogout} />
             <Sidebar user={user} tasks={tasks} />
 
@@ -154,7 +154,7 @@ const Layout = ({ onLogout, user }) => {
                                     title="Completed"
                                     value={stats.completedCount}
                                     icon={
-                                        <Circle className="2-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500"></Circle>
+                                        <Circle className="2-3.5 h-3.5 sm:w-4 sm:h-4 text-fuchsia-500"></Circle>
                                     }
                                 />
                                 <StatCard
@@ -199,7 +199,7 @@ const Layout = ({ onLogout, user }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100 ">
+                            <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100 mt-4">
                                 <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2">
                                     <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                                     Recent Activity
@@ -243,7 +243,7 @@ const Layout = ({ onLogout, user }) => {
                                                 <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full bg-purple-100 flex items-center justify-center">
                                                     <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500" />
                                                     <p className=" text-sm text-gray-500">
-                                                        No Recent Activity
+                                                        No Recent Activity 
                                                     </p>
                                                     <p className=" text-xs text-gray-400 mt-1">
                                                         Tasks will appear here.
