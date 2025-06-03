@@ -9,7 +9,7 @@ import {
 import { Lightbulb, Sparkles, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = (user, tasks) => {
+const Sidebar = ({user, tasks}) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [showModal, setshowModal] = useState(false);
 
@@ -49,7 +49,7 @@ const Sidebar = (user, tasks) => {
                         <span
                             className={` ${
                                 isMobile ? "block" : "hidden lg:block"
-                            } ${LINK_CLASSES}`}
+                            } ${LINK_CLASSES.text}`}
                         >
                             {text}
                         </span>
@@ -143,7 +143,7 @@ const Sidebar = (user, tasks) => {
                         className={SIDEBAR_CLASSES.mobileDrawer}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className=" flex justify-between items-centermb-4 border-b border-gray-300 pb-2">
+                        <div className=" flex justify-between items-center mb-4 border-b border-gray-300 pb-2">
                             <h2 className="text-lg font-bold text-purple-600 mt-17">
                                 {" "}
                                 Menu
