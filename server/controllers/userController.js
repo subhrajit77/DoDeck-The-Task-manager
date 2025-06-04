@@ -147,7 +147,7 @@ export async function updateProfile(req, res) {
 export async function updatePassword(req, res) {
     const { currentPassword, newPassword } = req.body;
 
-    if (!currentPassword || !newPassword || newPassword) {
+    if (!currentPassword || !newPassword) {
         return res
             .status(400)
             .json({ success: false, message: "Please fill all fields" });
