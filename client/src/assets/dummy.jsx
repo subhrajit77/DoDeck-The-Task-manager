@@ -82,7 +82,7 @@ export const BUTTON_CLASSES =
 export const INPUT_WRAPPER =
     "flex items-center border border-purple-100 rounded-lg px-3 py-2.5 focus-within:ring-2 focus-within:ring-purple-500 focus-within:border-purple-500 transition-all duration-200 ";
 export const FULL_BUTTON =
-    "w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white py-2.5 rounded-lg hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2";
+    "w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white py-2.5 rounded-lg hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer";
 export const SECTION_WRAPPER =
     "bg-white rounded-xl shadow-sm border border-purple-100 p-6";
 export const BACK_BUTTON =
