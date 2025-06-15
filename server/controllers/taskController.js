@@ -16,7 +16,7 @@ export const createTask = async (req, res) => {
         res.status(201).json({
             status: "success",
             data: {
-                task: saved,
+                task: saved
             },
         });
     } catch (err) {
