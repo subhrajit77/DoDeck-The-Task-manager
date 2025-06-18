@@ -15,6 +15,7 @@ import {
     MoreVertical,
     Clock,
     Calendar,
+    FilePenLine
 } from "lucide-react";
 
 // BACKEND TEST
@@ -339,17 +340,18 @@ export const MENU_OPTIONS = [
     {
         action: "edit",
         label: "Edit Task",
-        icon: <Edit2 size={14} className="text-purple-600" />,
+        icon: <FilePenLine className="text-purple-600 h-4 w-4 cursor-pointer" />,
     },
     {
         action: "delete",
         label: "Delete Task",
-        icon: <Trash2 size={14} className="text-red-600" />,
+        icon: <Trash2 size={14} className="text-red-600 cursor-pointer" />,
     },
 ];
 
 // CSS class groups for TaskItem
 export const TI_CLASSES = {
+    icon: "w-4 h-4 sm:w-5 sm:h-5",
     wrapper:
         "group p-4 sm:p-5 rounded-xl shadow-sm bg-white border-l-4 hover:shadow-md transition-all duration-300 border border-purple-100",
     leftContainer: "flex items-start gap-2 sm:gap-3 flex-1 min-w-0",

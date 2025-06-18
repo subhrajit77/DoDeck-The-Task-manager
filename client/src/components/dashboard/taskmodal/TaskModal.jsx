@@ -115,7 +115,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
         [taskData, today, getHeaders, onLogout, onSave, onClose]
     );
 
-    if(!isOpen) return null;
+    if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 backdrop-blur-sm bg-black/20 z-50 flex items-center justify-center p-4">

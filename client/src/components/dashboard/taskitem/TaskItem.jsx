@@ -6,8 +6,10 @@ import {
     BUTTONCLASSES,
     MENU_OPTIONS,
 } from "../../../assets/dummy";
-import { CheckCircle2, MoreVertical } from "lucide-react";
+import TaskModal from "../taskmodal/TaskModal";
+import { CheckCircle2, MoreVertical, Calendar, Clock } from "lucide-react";
 import axios from "axios";
+import { isToday, format } from "date-fns";
 
 const API_BASE = "http://localhost:4000/api/tasks";
 
@@ -102,8 +104,34 @@ const TaskItem = ({
         }
     };
 
+    const handleSave = async (updatedTask) => {
+        try {
+            const payload = (({
+                title,
+                description,
+                priority,
+                dueDate,
+                completed,
+            }) => ({ title, description, priority, dueDate, completed }))(
+                updatedTask
+            );
+            await axios.put(`${API_BASE}/${task._id}/gp`, payload, {
+                headers: getAuthHeaders(),
+            });
+            setShowEditModal(false);
+            onRefresh?.();
+        } catch (err) {
+            console.error(err);
+            if (err.response?.status === 401) {
+                onLogout?.();
+            } else {
+                alert("Failed to update task");
+            }
+        }
+    };
+
     return (
-        <div className={`${TI_CLASSES.wrapper} ${borderColor}`}>
+        <div className={`${TI_CLASSES.wrapper} ${borderColor} `}>
             <div className={TI_CLASSES.leftContainer}>
                 {showCompletedCheckbox && (
                     <button
@@ -164,7 +192,7 @@ const TaskItem = ({
                                     <button
                                         key={opt.action}
                                         onClick={() => handleAction(opt.action)}
-                                        className="w-full px-3 sm:px-4 py-2 text-left texxt-xs sm:text-sm hover: bg-purple-50 flex items-centergap-2 transition-colors duration-200"
+                                        className="w-full p-5 cursor- pointer sm:px-4 py-2 text-left text-s sm:text-sm hover: bg-purple-50 flex items-center gap-2 transition-colors duration-200"
                                     >
                                         {opt.icon}
                                         {opt.label}
@@ -174,7 +202,39 @@ const TaskItem = ({
                         )}
                     </div>
                 </div>
+                <div>
+                    <div
+                        className={`${TI_CLASSES.dateRow} ${
+                            task.dueDate && isToday(new Date(task.dueDate))
+                                ? "text-fuchsia-600"
+                                : "text-gray-500"
+                        }`}
+                    >
+                        <Calendar className="w-3.5 h-3.5" />
+                        {task.dueDate
+                            ? isToday(new Date(task.dueDate))
+                                ? "Today"
+                                : format(new Date(task.dueDate), "MMM dd")
+                            : "-"}
+                    </div>
+
+                    <div className={TI_CLASSES.createdRow}>
+                        <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        {task.createdAt
+                            ? `Created ${format(
+                                  new Date(task.createdAt),
+                                  "MMM dd"
+                              )}`
+                            : "No date"}
+                    </div>
+                </div>
             </div>
+            <TaskModal
+                isOpen={showEditModal}
+                onClose={() => setShowEditModal(false)}
+                taskToEdit={task}
+                onSave={handleSave}
+            />
         </div>
     );
 };
