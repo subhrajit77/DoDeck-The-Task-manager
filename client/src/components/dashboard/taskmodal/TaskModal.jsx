@@ -40,7 +40,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
                     ? taskToEdit.dueDate.split("T")[0]
                     : "",
                 completed: normalized,
-                id: taskToEdit.id,
+                id: taskToEdit._id,
             });
         } else {
             setTaskData(DEFAULT_TASK);
