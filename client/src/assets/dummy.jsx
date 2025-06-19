@@ -316,7 +316,7 @@ export const layoutClasses = {
     headerWrapper:
         "flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4",
     sortBox:
-        "flex items-center justify-between bg-white p-3 rounded-xl shadow-sm border border-purple-100 w-full md:w-auto",
+        "flex items-center justify-between bg-white p-3 rounded-xl shadow-sm border border-purple-100 w-auto md:w-25",
     select: "px-3 py-2 border border-purple-100 rounded-lg focus:ring-2 focus:ring-purple-500 md:hidden text-sm",
     tabWrapper: "hidden md:flex space-x-1 bg-purple-50 p-1 rounded-lg ml-3",
     tabButton: (active) =>

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Zap, LogOut, Settings, ChevronDown } from "lucide-react";
+import logo from "../../../assets/brand-logo/do-deck-logo.png";
 
 const Navbar = ({ user = {}, onLogout }) => {
     const menuref = useRef(null);
@@ -25,10 +26,7 @@ const Navbar = ({ user = {}, onLogout }) => {
                     onClick={() => navigate("/")}
                 >
                     {/* Logo */}
-                    <div className="relative w-10 h-10 flex items-center rounded-xl bg-gradient-to-br from-fuchsia-500 via-purple-500 to-indigo-500 shadow-lg group-hover: shadow-purple-300/50 group-hover: scale-105 transition-all duration-300">
-                        <Zap className="w-9 h-6 text-white" />
-                        <div className="absolute -bottom-1 -middle-1 w-3 h-3 bg-white rounded-full shadow-md animate-ping"></div>
-                    </div>
+                    <img src={logo} alt="TaskFlow Logo" className="h-20" />
                     {/* Brand name */}
                     <span className="text-2xl font-extrabold bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent tracking-wide">
                         TaskFlow
@@ -38,7 +36,7 @@ const Navbar = ({ user = {}, onLogout }) => {
                 <div>
                     <nav className="flex items-center gap-4">
                         <button
-                            className="p-2 text-gray-600 hover: text-purple-500
+                            className="p-2 text-gray-600 hover:text-purple-500
                             transition-colors duration-300 hover:bg-purple-50 rounded-full"
                             onClick={() => navigate("/profile")}
                         >
