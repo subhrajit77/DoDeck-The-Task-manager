@@ -126,7 +126,7 @@ const Layout = ({ onLogout, user }) => {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-lime-50">
             <Navbar user={user} onLogout={onLogout} />
             <Sidebar user={user} tasks={tasks} />
 
@@ -136,8 +136,8 @@ const Layout = ({ onLogout, user }) => {
                         <Outlet context={{ tasks, refreshTasks: fetchTasks }} />
                     </div>
 
-                    <div className=" xl:col-span-1 space-y-4 sm:space-y-6">
-                        <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-purple-100">
+                    <div className=" xl:col-span space-y-4 sm:space-y-6">
+                        <div className="bg-amber-200 rounded-xl lg:p-4 sm:p-5 shadow-sm border border-purple-100">
                             <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2">
                                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                                 Task Statistics

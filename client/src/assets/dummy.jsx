@@ -15,7 +15,8 @@ import {
     MoreVertical,
     Clock,
     Calendar,
-    FilePenLine
+    FilePenLine,
+    Bookmark,
 } from "lucide-react";
 
 // BACKEND TEST
@@ -198,7 +199,7 @@ export const HEADER =
 export const ADD_BUTTON =
     "flex items-center gap-2 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 w-full md:w-auto justify-center text-sm md:text-base cursor-pointer";
 export const STATS_GRID =
-    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6";
+    "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6";
 export const STAT_CARD =
     "p-3 md:p-4 rounded-xl bg-white shadow-sm border border-purple-100 hover:shadow-md transition-all duration-300 min-w-0";
 export const ICON_WRAPPER = "p-1.5 md:p-2 rounded-lg";
@@ -210,7 +211,7 @@ export const STATS = [
     {
         key: "total",
         label: "Total Tasks",
-        icon: HomeIcon,
+        icon: Bookmark,
         iconColor: "bg-purple-100 text-purple-600",
         valueKey: "total",
         gradient: true,
@@ -228,10 +229,10 @@ export const STATS = [
         key: "mediumPriority",
         label: "Medium Priority",
         icon: Flame,
-        iconColor: "bg-orange-100 text-orange-600",
-        borderColor: "border-orange-100",
+        iconColor: "bg-yellow-100 text-yellow-500",
+        borderColor: "border-orange-50",
         valueKey: "mediumPriority",
-        textColor: "text-orange-600",
+        textColor: "text-yellow-600",
     },
     {
         key: "highPriority",
@@ -340,7 +341,9 @@ export const MENU_OPTIONS = [
     {
         action: "edit",
         label: "Edit Task",
-        icon: <FilePenLine className="text-purple-600 h-4 w-4 cursor-pointer" />,
+        icon: (
+            <FilePenLine className="text-purple-600 h-4 w-4 cursor-pointer" />
+        ),
     },
     {
         action: "delete",

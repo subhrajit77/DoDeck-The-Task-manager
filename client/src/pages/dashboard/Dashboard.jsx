@@ -26,6 +26,7 @@ import {
     Filter,
     Calendar,
     CalendarIcon,
+    ChartLine,
 } from "lucide-react";
 import { useOutletContext } from "react-router-dom";
 import TaskItem from "../../components/dashboard/taskitem/TaskItem";
@@ -111,10 +112,10 @@ const Dashboard = () => {
             <div className={HEADER}>
                 <div className="min-w-0 mt-12">
                     <h1 className="text-xl md:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                        <HomeIcon className="text-purple-500 w-5 h-5 md:h-6 shrink-0" />
+                        {/* <ChartLine className="text-purple-500 w-7 h-7 md:h-6 shrink-0" /> */}
                         <span className=" truncate">Task Overview</span>
                     </h1>
-                    <p className=" text-sm text-gray-500 mt-1 ml-7 truncate">
+                    <p className=" text-sm text-gray-500 mt-1 ml-1 truncate">
                         {" "}
                         Manage your tasks efficiently
                     </p>
@@ -145,7 +146,7 @@ const Dashboard = () => {
                             key={key}
                             className={`${STAT_CARD} ${borderColor}`}
                         >
-                            <div className="flex items-center gap-2 md:gap-3">
+                            <div className="flex items-center gap-2 p-0 md:gap-3 ">
                                 <div className={`${ICON_WRAPPER} ${iconColor}`}>
                                     <Icon className="w-4 h-4 md:w-5 md:h-5" />
                                 </div>
