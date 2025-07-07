@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Zap, LogOut, Settings, ChevronDown } from "lucide-react";
-import logo from "../../../assets/brand-logo/do-deck-logo.png";
+import logo from "../../../assets/brand-logo/logo-do-deck.png";
 
 const Navbar = ({ user = {}, onLogout }) => {
     const menuref = useRef(null);
@@ -29,7 +29,7 @@ const Navbar = ({ user = {}, onLogout }) => {
     };
 
     return (
-        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200 font-sans">
+        <header className="sticky top-0 z-50 backdrop-blur-md shadow-sm border-b border-gray-200 font-sans">
             <div className="flex items-center justify-between px-3 py-2 sm:px-4 sm:py-3 md:px-6 max-w-7xl mx-auto">
                 {/* Logo and Brand */}
                 <div
@@ -40,7 +40,7 @@ const Navbar = ({ user = {}, onLogout }) => {
                     <img
                         src={logo}
                         alt="TaskFlow Logo"
-                        className="h-10 sm:h-12 md:h-16 lg:h-15 shadow-sm transition-transform duration-300 transform group-hover:scale-105"
+                        className="h-7 sm:h-12 md:h-16 lg:h-10 transition-transform duration-300 transform group-hover:scale-105"
                     />
                     {/* Brand name - Hide on very small screens */}
                     <span className="hidden xs:block text-lg sm:text-xl md:text-2xl font-extrabold bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent tracking-wide">
@@ -74,7 +74,8 @@ const Navbar = ({ user = {}, onLogout }) => {
                                         />
                                     ) : (
                                         <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-white font-semibold shadow-md text-sm sm:text-base">
-                                            {user.name?.[0]?.toUpperCase() || "U"}
+                                            {user.name?.[0]?.toUpperCase() ||
+                                                "U"}
                                         </div>
                                     )}
                                     {/* Online indicator */}
@@ -102,7 +103,8 @@ const Navbar = ({ user = {}, onLogout }) => {
                                     <li className="block sm:hidden p-3 border-b border-gray-100">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 text-white font-semibold">
-                                                {user.name?.[0]?.toUpperCase() || "U"}
+                                                {user.name?.[0]?.toUpperCase() ||
+                                                    "U"}
                                             </div>
                                             <div>
                                                 <p className="text-sm font-medium text-gray-800">
