@@ -109,7 +109,7 @@ const Dashboard = () => {
             {/* header */}
 
             <div className={HEADER}>
-                <div className="min-w-0">
+                <div className="min-w-0 mt-12">
                     <h1 className="text-xl md:text-3xl font-bold text-gray-800 flex items-center gap-2">
                         <HomeIcon className="text-purple-500 w-5 h-5 md:h-6 shrink-0" />
                         <span className=" truncate">Task Overview</span>

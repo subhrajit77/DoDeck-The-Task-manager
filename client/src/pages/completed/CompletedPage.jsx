@@ -42,7 +42,7 @@ const CompletedPage = () => {
             <div className="pt-6 pb-4 sm:pt-8 sm:pb-6">
                 <div className="max-w-7xl mx-auto">
                     {/* Title Section */}
-                    <div className="mb-6 sm:mb-8">
+                    <div className="mb-6 sm:mb-8 mt-10">
                         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2 mb-2">
                             <CheckCircle2 className="text-purple-500 w-5 h-5 sm:w-6 sm:h-6" />
                             <span className="truncate">Completed Tasks</span>
@@ -58,11 +58,11 @@ const CompletedPage = () => {
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                             {/* Sort Label */}
                             <div className="flex items-center gap-2 text-gray-700 font-medium">
-                                <Filter className="w-5 h-5 text-purple-500" />
+                                <Filter className="w-4 h-4 text-purple-500" />
                                 <span className="text-sm sm:text-base">Sort by:</span>
                             </div>
 
-                            {/* Tab Buttons - Mobile & Desktop */}
+                            {/* Sort Buttons */}
                             <div className="flex gap-2 bg-gray-100 p-2 rounded-lg">
                                 {SORT_OPTIONS.map((opt) => (
                                     <button
