@@ -46,7 +46,7 @@ const PendingPage = () => {
     return (
         <div className={layoutClasses.container}>
             <div className="mb-6">
-                <div className="flex items-center justify-between flex-wrap">
+                <div className="flex items justify-right flex-wrap mt-12">
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2">
                             <ListChecks className=" text-purple-500" /> Pending
