@@ -1,6 +1,6 @@
-# 📝 Next Do
+# 📝 DoDeck
 
-**Next Do** is a modern and responsive task management web application built using the powerful **MERN stack** and styled with **Tailwind CSS**. Whether you're organizing personal tasks or managing a team's workflow, Next Do makes task tracking efficient and visually intuitive.
+**DoDeck** is a modern and responsive task management web application built using the powerful **MERN stack** and styled with **Tailwind CSS**. Whether you're organizing personal tasks or managing a team's workflow, Next Do makes task tracking efficient and visually intuitive.
 
 ## 🚀 Features
 
