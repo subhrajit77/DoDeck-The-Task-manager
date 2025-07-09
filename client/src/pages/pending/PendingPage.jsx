@@ -5,7 +5,8 @@ import { layoutClasses, SORT_OPTIONS } from "../../assets/dummy";
 import TaskItem from "../../components/dashboard/taskitem/TaskItem";
 import TaskModal from "../../components/dashboard/taskmodal/TaskModal";
 
-const API_BASE = "https://dodeck-the-task-manager-backend.onrender.com/api/tasks";
+const API_BASE =
+    "https://dodeck-the-task-manager-backend.onrender.com/api/tasks";
 
 const PendingPage = () => {
     const { tasks = [], refreshTasks } = useOutletContext();
@@ -58,7 +59,7 @@ const PendingPage = () => {
                             your attention
                         </p>
                     </div>
-                    <div className="mt-6 md:mt-0 flex flex-col gap-3 bg-white border border-gray-200 rounded-lg px-5 py-4 shadow-sm w-full md:w-auto">
+                    <div className="lg:ml-23 flex md:mt-0 flex flex-col gap-3 sm:ml-1 mt-5 bg-white border border-gray-200 rounded-lg px-5 py-4 shadow-sm w-full md:w-auto">
                         <div className="flex items-center gap-2 text-gray-700 font-medium mb-1">
                             <Filter className="w-5 h-5 text-purple-500" />
                             <span className="text-sm">Sort by:</span>
@@ -97,7 +98,12 @@ const PendingPage = () => {
                 {sortedPendingTasks.length === 0 ? (
                     <div className={layoutClasses.emptyState}>
                         <div className="max-w-xs mx-auto py-6 text-center">
-                            <div className={layoutClasses.emptyIconbg + " flex items-center justify-center mx-auto mb-4"}>
+                            <div
+                                className={
+                                    layoutClasses.emptyIconbg +
+                                    " flex items-center justify-center mx-auto mb-4"
+                                }
+                            >
                                 <Clock className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="text-lg font-semibold text-gray-800 mb-2">

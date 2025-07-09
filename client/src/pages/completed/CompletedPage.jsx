@@ -63,12 +63,12 @@ const CompletedPage = () => {
                             </div>
 
                             {/* Sort Buttons */}
-                            <div className="flex gap-2 bg-gray-100 p-2 rounded-lg">
+                            <div className="flex gap-10 bg-gray-100 p-2 rounded-lg">
                                 {SORT_OPTIONS.map((opt) => (
                                     <button
                                         key={opt.id}
                                         onClick={() => setSortBy(opt.id)}
-                                        className={`flex items-center gap-2 px-4 py-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 min-w-[80px] justify-center ${
+                                        className={`flex items-center gap-2 px-4 py-3 rounded-lg text-md sm:text-base font-medium transition-all duration-200 min-w-[80px] justify-center ${
                                             sortBy === opt.id
                                                 ? "bg-white text-purple-700 shadow-md border border-purple-200"
                                                 : "text-gray-600 hover:text-purple-600 hover:bg-white/50"
