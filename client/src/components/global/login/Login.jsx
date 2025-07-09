@@ -109,7 +109,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
                     Welcome Back
                 </h2>
                 <p className="text-gray-500 text-sm mt-1">
-                    Sign in to continue to TaskFlow
+                    Sign in to continue to DoDeck
                 </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">

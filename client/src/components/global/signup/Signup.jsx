@@ -61,7 +61,7 @@ const Signup = ({ onSwitchMode }) => {
             </h2>
             <p className="text-gray-500 text-sm mt-1 flex items-center justify-center">
                 {" "}
-                Join TaskFlow to manage your tasks
+                Join DoDeck to manage your tasks
             </p>
             {message.text && (
                 <div
