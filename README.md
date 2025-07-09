@@ -14,12 +14,12 @@
 
 ## 🛠 Tech Stack
 
-- **Frontend:** React.js (Next.js optional if used)
+- **Frontend:** React.js, Vite
 - **Backend:** Node.js, Express.js
-- **Database:** MongoDB
+- **Database:** MongoDB(Atlas)
 - **Styling:** Tailwind CSS
 - **Authentication:** JWT/Auth Middleware
-- **Hosting:** Coming Soon...
+- **Hosting:** Render Cloud Application Platform
 
 ## 📦 Installation & Setup (Local)
 
