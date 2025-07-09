@@ -33,7 +33,7 @@ import TaskItem from "../../components/dashboard/taskitem/TaskItem";
 import TaskModal from "../../components/dashboard/taskmodal/TaskModal";
 import axios from "axios";
 
-const API_BASE = "http://localhost:4000/api/tasks";
+const API_BASE = "https://dodeck-the-task-manager-backend.onrender.com/api/tasks";
 
 const Dashboard = () => {
     const { tasks, refreshTasks } = useOutletContext();

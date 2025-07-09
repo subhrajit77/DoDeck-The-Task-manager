@@ -11,7 +11,7 @@ import { CheckCircle2, MoreVertical, Calendar, Clock } from "lucide-react";
 import axios from "axios";
 import { isToday, format } from "date-fns";
 
-const API_BASE = "http://localhost:4000/api/tasks";
+const API_BASE = "https://dodeck-the-task-manager-backend.onrender.com/api/tasks";
 
 const TaskItem = ({
     task,

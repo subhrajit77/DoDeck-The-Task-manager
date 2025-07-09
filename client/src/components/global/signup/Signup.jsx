@@ -9,7 +9,7 @@ import {
     MESSAGE_SUCCESS,
 } from "../../../assets/dummy.jsx";
 // import { Icon } from "lucide-react";
-const API_URL = "http://localhost:4000";
+const API_URL = "https://dodeck-the-task-manager-backend.onrender.com";
 const INITIAL_FORM = {
     name: "",
     email: "",

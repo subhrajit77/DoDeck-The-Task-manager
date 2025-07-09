@@ -21,7 +21,7 @@ function App() {
         const token = localStorage.getItem("token");
         if (token) {
             axios
-                .get("http://localhost:4000/api/user/me", {
+                .get("https://dodeck-the-task-manager-backend.onrender.com/api/user/me", {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then((res) => {

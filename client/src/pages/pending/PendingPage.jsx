@@ -5,7 +5,7 @@ import { layoutClasses, SORT_OPTIONS } from "../../assets/dummy";
 import TaskItem from "../../components/dashboard/taskitem/TaskItem";
 import TaskModal from "../../components/dashboard/taskmodal/TaskModal";
 
-const API_BASE = "http://localhost:4000/api/tasks";
+const API_BASE = "https://dodeck-the-task-manager-backend.onrender.com/api/tasks";
 
 const PendingPage = () => {
     const { tasks = [], refreshTasks } = useOutletContext();

@@ -30,7 +30,7 @@ const Layout = ({ onLogout, user }) => {
             // if (!token) throw new Error("No auth token found");
 
             const { data } = await axios.get(
-                "http://localhost:4000/api/tasks/gp/",
+                "https://dodeck-the-task-manager-backend.onrender.com/api/tasks/gp/",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
